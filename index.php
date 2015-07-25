@@ -1,8 +1,14 @@
-<?php include ('conexion.php');?>
+<?php 
+include ('Conexion.php');
+//Acentos
+header('Content-Type: text/html; charset=UTF-8'); 
+mysql_set_charset('utf8');
+?>
 <html>
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -33,9 +39,10 @@
                     </td>
                     <td>
                         <input type="submit" value="Aceptar" name="aceptar" />
+                        </form>
                     </td>
                 </tr>
-                <tr>
+                <tr align="center" valign="middle">
                     <td colspan="8" aling="center">
                    Listado de Productos
                     </td>
@@ -51,14 +58,18 @@
                     <td>Agregar</td>
                 </tr>
                 <?php
-                     $consulta = mysql_query("SELECT * FROM productos");
+                //Consulta SQL para ver todos los productos
+                    $consulta = mysql_query("SELECT * FROM productos");
+                    //Funciona parecido a request, el cual obtiene el valor del txt
                     if(isset($_POST['buscar']))
                     {
+                       //Solo se verá el producto escrito
                        $query = "SELECT * FROM productos WHERE nombre LIKE '%".$_POST['buscar']."%';";
                        $consulta = mysql_query($query); 
                     }
                     while ($filas = mysql_fetch_array($consulta))
                     {
+                        //Se obtiene los valores del producto
                         $id = $filas['id'];
                         $imagen = $filas['imagen'];
                         $nombre = $filas['nombre'];
@@ -66,7 +77,8 @@
                         $precio = $filas['precio'];
                         $stock = $filas['cuanto_hay'];
                         $fecha = $filas['fecha'];
-                    
+                        //Agregando al carrito los productos, SIN SEGURIDAD
+                        //$agregar = '<a href ="carrito.php?id='.$filas['id'].'" title="'.$filas['id'].'">Agregar</a>';
                 ?>
                 <tr>
                     <td>
@@ -91,13 +103,19 @@
                         <?php echo $fecha;?> 
                     </td>
                     <td>
-                        
+                        <form action="carrito.php" method="POST" name="compra">
+                            <input type="hidden" name="txt_id" value="<?php echo $id ;?> " />
+                            <input type="hidden" name="txt_nombre" value="<?php echo $nombre ;?> " />
+                            <input type="hidden" name="txt_precio" value="<?php echo $precio ;?> " />
+                            <input type="hidden" name="txt_cantidad" value="1" />
+                            <input type="submit" value="Comprar" name="btn_comprar" />
+                        </form>
                     </td>
                 </tr>
             </tbody>
             <?php }?>
         </table>
-     </form>
+     
     </body>
 </html>
 
