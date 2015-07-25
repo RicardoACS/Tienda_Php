@@ -1,5 +1,5 @@
 <?php 
-include ('Conexion.php');
+include ('conexion.php');
 //Acentos
 header('Content-Type: text/html; charset=UTF-8'); 
 mysql_set_charset('utf8');
