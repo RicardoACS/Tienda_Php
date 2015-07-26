@@ -29,9 +29,6 @@ mysql_set_charset('utf8');
                         
                     </td>
                     <td>
-                        
-                    </td>
-                    <td>
                         Buscar
                     </td>
                     <td>
@@ -40,6 +37,9 @@ mysql_set_charset('utf8');
                     <td>
                         <input type="submit" value="Aceptar" name="aceptar" />
                         </form>
+                    </td>
+                    <td>
+                        <a href="carrito.php">Ver carrito</a>
                     </td>
                 </tr>
                 <tr align="center" valign="middle">
