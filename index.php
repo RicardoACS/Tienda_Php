@@ -23,7 +23,7 @@ mysql_set_charset('utf8');
                         
                     </td>
                     <td>
-                        
+                       <a href="Usuarios/pido_datos.php">Logearse</a>
                     </td>
                     <td>
                         
